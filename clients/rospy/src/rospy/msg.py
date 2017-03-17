@@ -100,7 +100,7 @@ def args_kwds_to_message(data_class, args, kwds):
     @raise TypeError: if args and kwds are both specified
     """
     if args and kwds:
-        raise TypeError("publish() can be called with arguments or keywords, but not both.")
+        raise TypeError("Publish() can be called with arguments or keywords, but not both.")
     elif kwds:
         return data_class(**kwds)
     else:
@@ -116,9 +116,9 @@ def args_kwds_to_message(data_class, args, kwds):
             # information to users
             elif isinstance(arg, genpy.Message):
                 if len(data_class._slot_types) == 0:
-                    raise TypeError("expected [] but got [%s]"%arg._type)
+                    raise TypeError("Expected [] but got [%s]"%arg._type)
                 elif arg._type != data_class._slot_types[0]:
-                    raise TypeError("expected [%s] but got [%s]"%(data_class._slot_types[0], arg._type))
+                    raise TypeError("Expected [%s] but got [%s]"%(data_class._slot_types[0], arg._type))
             return data_class(*args)
         else:
             return data_class(*args)
@@ -241,6 +241,6 @@ def deserialize_messages(b, msg_queue, data_class, queue_size=None, max_msgs=Non
             else:
                 b.seek(btell)
     except Exception as e:
-        logging.getLogger('rospy.msg').error("cannot deserialize message: EXCEPTION %s", traceback.format_exc())
-        raise genpy.DeserializationError("cannot deserialize: %s"%str(e))
+        logging.getLogger('rospy.msg').error("Cannot deserialize message: EXCEPTION %s", traceback.format_exc())
+        raise genpy.DeserializationError("Cannot deserialize: %s"%str(e))
 
